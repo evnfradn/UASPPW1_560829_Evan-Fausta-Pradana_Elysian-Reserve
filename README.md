@@ -1,6 +1,6 @@
 # Elysian Reserve 
 
-> *Kemewahan yang bersahaja. Ketenangan yang tanpa batas.*
+> FIlosofi: *Kemewahan yang bersahaja. Ketenangan yang tanpa batas.*
 
 Project ini adalah aplikasi web booking hotel mewah berbasis **PHP & MySQL** yang dibuat untuk tugas **UAS Praktikum Pemrograman Web 1**. Di sini, tamu bisa cari kamar, hitung harga langsung, dan pesan kamar. Sementara admin bisa kelola semua data kamar lewat panel dashboard. Semua proses input divalidasi pake JavaScript, tampilannya responsif berkat Bootstrap 5, dan keamanannya dijaga lewat session login.
 
@@ -109,7 +109,7 @@ Untuk memudahkan pengujian, Anda bisa menggunakan akun demo berikut:
 ```text
 luxury-grand-hotel/
 ├── assets/
-│   ├── css/style.css       → Styling custom (sistem desain mewah)
+│   ├── css/style.css       → Styling custom 
 │   ├── js/main.js          → Validasi form, kalkulator harga, & efek DOM
 │   └── img/                → File gambar kamar hotel
 ├── includes/
