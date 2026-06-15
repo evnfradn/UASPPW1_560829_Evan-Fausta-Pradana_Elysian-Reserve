@@ -1,0 +1,23 @@
+# .gitignore — Elysian Reserve
+
+# ── SENSITIVE CONFIG ──────────────────────────────
+includes/config.php
+
+# ── UPLOADED IMAGES (keep gitignored for privacy) ─
+assets/img/room_*.jpg
+assets/img/room_*.png
+assets/img/room_*.webp
+
+# ── SYSTEM & EDITOR FILES ─────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.log
+*.tmp
+
+# ── COMPOSER / NODE (if added later) ─────────────
+vendor/
+node_modules/

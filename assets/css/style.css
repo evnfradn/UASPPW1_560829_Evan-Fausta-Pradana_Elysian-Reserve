@@ -1,0 +1,854 @@
+
+
+/* ── GOOGLE FONTS & ROOT VARIABLES ─────────────────── */
+:root {
+    --color-primary:       #1b1c1c;
+    --color-gold:          #775a19;
+    --color-gold-light:    #fed488;
+    --color-cream:         #fbf9f8;
+    --color-cream-low:     #f5f3f3;
+    --color-cream-mid:     #efeded;
+    --color-cream-high:    #e9e8e7;
+    --color-outline:       #747878;
+    --color-outline-var:   #c4c7c7;
+    --color-on-surface-v:  #444748;
+    --color-error:         #ba1a1a;
+    --color-error-bg:      #ffdad6;
+    --color-success:       #386a20;
+    --color-success-bg:    #c3efad;
+
+    --font-serif:          'Playfair Display', Georgia, serif;
+    --font-sans:           'Manrope', system-ui, sans-serif;
+
+    --nav-height:          80px;
+    --shadow-soft:         0 20px 40px rgba(0,0,0,0.04);
+    --shadow-card:         0 4px 24px rgba(0,0,0,0.06);
+    --transition:          all 0.25s ease;
+}
+
+/* ── RESET & BASE ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-cream);
+    color: var(--color-primary);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ── TYPOGRAPHY ─────────────────────────────────────── */
+.serif                { font-family: var(--font-serif); }
+.sans                 { font-family: var(--font-sans); }
+
+.elysian-display      { font-family: var(--font-serif); font-size: clamp(40px,6vw,72px); font-weight:700; line-height:1.1; letter-spacing:-0.02em; }
+.elysian-headline-lg  { font-family: var(--font-serif); font-size: clamp(28px,4vw,48px);  font-weight:600; line-height:1.15; }
+.elysian-headline-md  { font-family: var(--font-serif); font-size: clamp(22px,3vw,32px);  font-weight:500; line-height:1.25; }
+.elysian-headline-sm  { font-family: var(--font-serif); font-size: clamp(18px,2.5vw,24px); font-weight:500; }
+.elysian-body-lg      { font-family: var(--font-sans);  font-size: 18px; font-weight:400; line-height:1.7; }
+.elysian-body-md      { font-family: var(--font-sans);  font-size: 16px; font-weight:400; line-height:1.6; }
+.elysian-body-sm      { font-family: var(--font-sans);  font-size: 14px; font-weight:400; line-height:1.6; }
+.elysian-label-sm     { font-family: var(--font-sans);  font-size: 12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; }
+
+.text-gold            { color: var(--color-gold) !important; }
+.text-muted-soft      { color: var(--color-on-surface-v); }
+
+/* ── SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar       { width:6px; height:4px; }
+::-webkit-scrollbar-track { background: var(--color-cream-low); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); }
+
+/* ─────────────────────────────────────────────────────
+   NAVIGATION
+   ───────────────────────────────────────────────────── */
+.elysian-navbar {
+    background: rgba(251,249,248,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-outline-var);
+    height: var(--nav-height);
+    transition: box-shadow 0.3s ease;
+}
+.elysian-navbar.scrolled {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.px-nav { padding-left: clamp(20px,5vw,80px); padding-right: clamp(20px,5vw,80px); }
+
+.elysian-brand {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-primary) !important;
+    text-decoration: none;
+}
+
+.elysian-navlink {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-v) !important;
+    text-decoration: none;
+    padding: 4px 0 !important;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+}
+.elysian-navlink:hover,
+.elysian-navlink.active {
+    color: var(--color-gold) !important;
+    border-bottom-color: var(--color-gold);
+}
+
+.elysian-toggler {
+    border: 1px solid var(--color-outline-var);
+    background: transparent;
+    padding: 6px 10px;
+    color: var(--color-primary);
+}
+.elysian-toggler:focus { box-shadow: none; }
+
+.elysian-user-badge {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-on-surface-v);
+    border: 1px solid var(--color-outline-var);
+    padding: 6px 12px;
+}
+
+.badge-gold {
+    background: var(--color-gold-light);
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 0;
+}
+
+/* ─────────────────────────────────────────────────────
+   BUTTONS
+   ───────────────────────────────────────────────────── */
+.btn-elysian-primary {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #fff !important;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-elysian-primary:hover { background: var(--color-gold); color:#fff !important; }
+.btn-elysian-primary:active { transform: scale(0.97); }
+
+.btn-elysian-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--color-primary) !important;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 28px;
+    border: 1px solid var(--color-primary);
+    border-radius: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-elysian-secondary:hover {
+    background: var(--color-primary);
+    color: #fff !important;
+}
+
+
+.btn-elysian-on-dark {
+    display: inline-block;
+    background: transparent;
+    color: var(--color-gold) !important;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 28px;
+    border: 1px solid var(--color-gold);
+    border-radius: 0;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+    text-align: center;
+}
+.btn-elysian-on-dark:hover {
+    background: var(--color-gold);
+    color: #fff !important;
+}
+
+.btn-elysian-gold {
+    display: inline-block;
+    background: var(--color-gold);
+    color: #fff !important;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-elysian-gold:hover { background: var(--color-primary); color:#fff !important; }
+
+.btn-elysian-danger {
+    display: inline-block;
+    background: transparent;
+    color: var(--color-error) !important;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 1px solid var(--color-error);
+    border-radius: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-elysian-danger:hover { background: var(--color-error); color:#fff !important; }
+
+
+.btn-elysian-primary.w-full,
+.btn-elysian-secondary.w-full,
+.btn-elysian-gold.w-full { width: 100%; text-align: center; }
+
+/* ─────────────────────────────────────────────────────
+   HERO SECTION
+   ───────────────────────────────────────────────────── */
+.hero-section {
+    position: relative;
+    height: clamp(560px, 85vh, 920px);
+    overflow: hidden;
+    margin: 0 clamp(0px,3vw,32px) 0;
+}
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+}
+.hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: clamp(24px,5vw,80px);
+}
+
+/* Booking bar */
+.booking-bar {
+    background: #fff;
+    box-shadow: var(--shadow-soft);
+    padding: 8px;
+    max-width: 860px;
+}
+.booking-bar-field {
+    border-bottom: 1px solid var(--color-outline);
+    padding: 10px 4px;
+    transition: border-color 0.2s;
+}
+.booking-bar-field:focus-within { border-bottom-color: var(--color-gold); }
+.booking-bar-field label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-outline);
+    margin-bottom: 4px;
+}
+.booking-bar-field input,
+.booking-bar-field select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--color-primary);
+    padding: 0;
+}
+.booking-bar-field select { cursor: pointer; }
+
+/* ─────────────────────────────────────────────────────
+   STATS / PHILOSOPHY SECTION
+   ───────────────────────────────────────────────────── */
+.stat-number {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--color-gold);
+}
+.service-card {
+    background: var(--color-cream-low);
+    padding: 36px 28px;
+    transition: var(--transition);
+}
+.service-card:hover { background: var(--color-cream-high); }
+.service-icon {
+    font-size: 36px;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 16px;
+}
+
+/* ─────────────────────────────────────────────────────
+   ROOM CARDS
+   ───────────────────────────────────────────────────── */
+.room-card {
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.room-card-img-wrap {
+    overflow: hidden;
+    position: relative;
+}
+.room-card-img-wrap img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+    display: block;
+}
+.room-card:hover .room-card-img-wrap img { transform: scale(1.04); }
+
+.room-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(4px);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    color: var(--color-primary);
+}
+.room-badge.available  { color: var(--color-success); border-left: 3px solid var(--color-success); }
+.room-badge.booked     { color: var(--color-error);   border-left: 3px solid var(--color-error); }
+.room-badge.maintenance{ color: var(--color-outline);  border-left: 3px solid var(--color-outline); }
+
+.room-card-body { padding: 20px 0 0; }
+.room-card-price {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-gold);
+}
+.room-card-meta {
+    border-top: 1px solid var(--color-cream-high);
+    margin-top: 16px;
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.room-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-on-surface-v);
+}
+.room-meta-item .material-symbols-outlined { font-size: 16px; }
+
+/* ─────────────────────────────────────────────────────
+   SECTION WRAPPERS
+   ───────────────────────────────────────────────────── */
+.section-gap       { padding-top: clamp(60px, 8vw, 120px); padding-bottom: clamp(60px, 8vw, 120px); }
+.section-gap-sm    { padding-top: clamp(40px, 5vw, 80px);  padding-bottom: clamp(40px, 5vw, 80px); }
+.section-cream     { background-color: var(--color-cream); }
+.section-white     { background-color: #fff; }
+.section-dark      { background-color: var(--color-primary); color: #fff; }
+.section-container { max-width: 1440px; margin: 0 auto; padding: 0 clamp(20px,5vw,80px); }
+
+.gold-line {
+    width: 48px;
+    height: 1.5px;
+    background: var(--color-gold);
+    margin-bottom: 24px;
+}
+
+/* ─────────────────────────────────────────────────────
+   SERVICES CIRCLES SECTION
+   ───────────────────────────────────────────────────── */
+.service-circle-wrap {
+    overflow: hidden;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    max-width: 260px;
+    margin: 0 auto 24px;
+}
+.service-circle-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.6s ease, transform 0.6s ease;
+}
+.service-circle-wrap:hover img { filter: grayscale(0%); transform: scale(1.06); }
+
+/* ─────────────────────────────────────────────────────
+   CTA / NEWSLETTER
+   ───────────────────────────────────────────────────── */
+.cta-section {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 80px clamp(24px,6vw,96px);
+    position: relative;
+    overflow: hidden;
+}
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(119,90,25,0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+.cta-email-input {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0;
+    padding: 14px 20px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+.cta-email-input::placeholder { color: rgba(255,255,255,0.4); }
+.cta-email-input:focus { border-color: var(--color-gold); }
+
+/* ─────────────────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────────────────── */
+.elysian-footer {
+    background: var(--color-primary);
+    color: rgba(255,255,255,0.8);
+    padding-top: 60px;
+}
+.footer-links { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: rgba(200,198,197,0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer-links a:hover { color: #fff; }
+
+/* ─────────────────────────────────────────────────────
+   FILTER SIDEBAR (ROOMS PAGE)
+   ───────────────────────────────────────────────────── */
+.filter-sidebar { position: sticky; top: 100px; }
+.filter-title {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-cream-high);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+}
+.filter-check { display:flex; align-items:center; gap:10px; cursor:pointer; margin-bottom:12px; }
+.filter-check input[type="checkbox"],
+.filter-check input[type="radio"] {
+    accent-color: var(--color-gold);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.filter-check span {
+    font-size: 14px;
+    color: var(--color-on-surface-v);
+    transition: color 0.2s;
+}
+.filter-check:hover span { color: var(--color-primary); }
+
+/* ─────────────────────────────────────────────────────
+   SEARCH BAR
+   ───────────────────────────────────────────────────── */
+.search-wrapper {
+    position: relative;
+    max-width: 480px;
+}
+.search-wrapper .material-symbols-outlined {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-outline);
+    font-size: 20px;
+}
+.search-input {
+    width: 100%;
+    padding: 12px 16px 12px 44px;
+    border: 1px solid var(--color-outline-var);
+    border-radius: 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.search-input:focus { border-color: var(--color-gold); }
+
+/* ─────────────────────────────────────────────────────
+   BOOKING DETAIL PAGE
+   ───────────────────────────────────────────────────── */
+.booking-panel {
+    background: #fff;
+    border: 1px solid var(--color-outline-var);
+    padding: 36px;
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 100px;
+}
+.price-breakdown { border-top: 1px solid var(--color-cream-high); border-bottom: 1px solid var(--color-cream-high); padding: 20px 0; }
+.price-row { display:flex; justify-content:space-between; margin-bottom: 10px; }
+.price-row.total { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--color-cream-high); margin-bottom: 0; }
+.price-row.total span { font-family: var(--font-serif); font-size: 20px; font-weight: 600; }
+
+/* ─────────────────────────────────────────────────────
+   FORMS (LOGIN, BOOKING, PROFILE)
+   ───────────────────────────────────────────────────── */
+.elysian-form-group { position: relative; margin-bottom: 32px; }
+.elysian-form-control {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-outline-var);
+    border-radius: 0;
+    padding: 10px 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    background: transparent;
+    outline: none;
+    color: var(--color-primary);
+    transition: border-color 0.2s;
+}
+.elysian-form-control:focus { border-bottom-color: var(--color-gold); }
+.elysian-form-label {
+    position: absolute;
+    top: -18px;
+    left: 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-v);
+    transition: color 0.2s;
+}
+.elysian-form-control:focus + .elysian-form-label { color: var(--color-gold); }
+.form-error-msg {
+    font-size: 11px;
+    color: var(--color-error);
+    margin-top: 6px;
+    display: none;
+}
+.form-error-msg.visible { display: block; }
+.elysian-form-control.is-invalid { border-bottom-color: var(--color-error); }
+
+
+.elysian-input-wrap { margin-bottom: 28px; }
+.elysian-input-wrap label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-v);
+    margin-bottom: 8px;
+}
+.elysian-input-wrap input,
+.elysian-input-wrap select,
+.elysian-input-wrap textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-outline-var);
+    border-radius: 0;
+    padding: 10px 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    background: transparent;
+    outline: none;
+    color: var(--color-primary);
+    transition: border-color 0.2s;
+}
+.elysian-input-wrap input:focus,
+.elysian-input-wrap select:focus,
+.elysian-input-wrap textarea:focus { border-bottom-color: var(--color-gold); }
+.elysian-input-wrap textarea { resize: vertical; min-height: 90px; }
+
+/* Login page card */
+.login-card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 56px 48px;
+    box-shadow: var(--shadow-card);
+}
+@media (max-width: 576px) {
+    .login-card { padding: 36px 24px; }
+}
+
+/* Alert messages */
+.alert-elysian {
+    border-radius: 0;
+    border: none;
+    border-left: 4px solid;
+    padding: 14px 20px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+}
+.alert-elysian.success { border-color: var(--color-success); background: var(--color-success-bg); color: var(--color-success); }
+.alert-elysian.error   { border-color: var(--color-error);   background: var(--color-error-bg);   color: var(--color-error); }
+.alert-elysian.info    { border-color: var(--color-gold);    background: #fff8ee;                  color: var(--color-gold); }
+
+/* ─────────────────────────────────────────────────────
+   MY BOOKINGS / DASHBOARD
+   ───────────────────────────────────────────────────── */
+.dashboard-card {
+    background: #fff;
+    border: 1px solid rgba(196,199,199,0.3);
+    box-shadow: var(--shadow-soft);
+}
+.booking-history-row {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    border: 1px solid rgba(196,199,199,0.2);
+    background: #fff;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+    gap: 16px;
+}
+.booking-history-row:hover { border-color: var(--color-gold); }
+.booking-history-img { width: 80px; height: 80px; object-fit: cover; flex-shrink: 0; }
+.status-badge {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+}
+.status-pending   { background: #fff3cd; color: #856404; }
+.status-confirmed { background: var(--color-success-bg); color: var(--color-success); }
+.status-cancelled { background: var(--color-error-bg); color: var(--color-error); }
+.status-completed { background: var(--color-cream-high); color: var(--color-on-surface-v); }
+
+/* Progress bar */
+.loyalty-bar { height: 4px; background: rgba(255,255,255,0.12); }
+.loyalty-bar-fill { height: 100%; background: var(--color-gold); }
+
+/* ─────────────────────────────────────────────────────
+   ADMIN TABLE
+   ───────────────────────────────────────────────────── */
+.elysian-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.elysian-table thead th {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-v);
+    border-bottom: 1px solid var(--color-outline-var);
+    padding: 10px 16px;
+    white-space: nowrap;
+}
+.elysian-table tbody td {
+    padding: 16px;
+    border-bottom: 1px solid var(--color-cream-high);
+    vertical-align: middle;
+}
+.elysian-table tbody tr:hover td { background: var(--color-cream-low); }
+
+/* ─────────────────────────────────────────────────────
+   PAGINATION
+   ───────────────────────────────────────────────────── */
+.elysian-pagination { display:flex; gap:6px; align-items:center; }
+.page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-outline-var);
+    background: #fff;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.page-btn:hover  { border-color: var(--color-primary); background: var(--color-primary); color: #fff; }
+.page-btn.active { background: var(--color-primary); color:#fff; border-color: var(--color-primary); }
+.page-btn.disabled { opacity: 0.4; pointer-events: none; }
+
+/* ─────────────────────────────────────────────────────
+   BREADCRUMB
+   ───────────────────────────────────────────────────── */
+.elysian-breadcrumb { display:flex; align-items:center; gap:6px; margin-bottom:16px; }
+.elysian-breadcrumb a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--color-on-surface-v); text-decoration: none; transition: color 0.2s;
+}
+.elysian-breadcrumb a:hover { color: var(--color-gold); }
+.elysian-breadcrumb .sep { font-size: 16px; color: var(--color-outline-var); }
+.elysian-breadcrumb .current { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); }
+
+/* ─────────────────────────────────────────────────────
+   AMENITIES GRID
+   ───────────────────────────────────────────────────── */
+.amenity-item { display: flex; align-items: flex-start; gap: 14px; }
+.amenity-item .material-symbols-outlined { font-size: 28px; color: var(--color-gold); flex-shrink: 0; }
+
+/* ─────────────────────────────────────────────────────
+   SCROLL REVEAL
+   ───────────────────────────────────────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─────────────────────────────────────────────────────
+   RESPONSIVE TWEAKS
+   ───────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+    .hero-section { margin: 0; }
+    .booking-panel { position: static; }
+    .login-card { padding: 32px 20px; }
+    .filter-sidebar { position: static; }
+    .elysian-table thead { display: none; }
+    .elysian-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--color-cream-high);
+    }
+    .elysian-table tbody td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-on-surface-v);
+        flex-shrink: 0;
+        margin-right: 12px;
+    }
+    .elysian-table tbody tr { display: block; border: 1px solid var(--color-cream-high); margin-bottom: 12px; }
+}
+
+@media (max-width: 576px) {
+    .cta-section { padding: 48px 20px; }
+}
+
+/* ─────────────────────────────────────────────────────
+   MOBILE NAVBAR COLLAPSE BACKGROUND
+   ───────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+    .elysian-navbar {
+        height: auto;
+        min-height: var(--nav-height);
+    }
+
+    #navbarMenu {
+        background: rgba(251, 249, 248, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid var(--color-outline-var);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        padding: 16px 0 20px;
+        margin: 0 calc(-1 * clamp(20px, 5vw, 80px));
+        padding-left: clamp(20px, 5vw, 80px);
+        padding-right: clamp(20px, 5vw, 80px);
+    }
+
+    #navbarMenu .navbar-nav {
+        gap: 0 !important;
+    }
+
+    #navbarMenu .nav-item {
+        border-bottom: 1px solid var(--color-cream-high);
+    }
+
+    #navbarMenu .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    #navbarMenu .elysian-navlink {
+        padding: 14px 0 !important;
+        border-bottom: none !important;
+        display: block;
+        font-size: 13px;
+    }
+
+    #navbarMenu .d-flex {
+        padding-top: 16px;
+        border-top: 1px solid var(--color-cream-high);
+        flex-wrap: wrap;
+        gap: 10px !important;
+    }
+}
